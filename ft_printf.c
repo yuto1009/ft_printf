@@ -6,8 +6,13 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:45:43 by yuendo            #+#    #+#             */
-/*   Updated: 2023/06/07 12:45:56 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/06/10 21:00:15 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_printf(const char *, ...);
+int ft_printf(const char *, ...){
+    va_list args;
+    va_start(args, format);
+    
+    return 0;
+}
