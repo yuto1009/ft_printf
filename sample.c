@@ -1,27 +1,28 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-void print_two(const char *format, ...)
-{
-    va_list args1, args2;
+int sum(int count, ...){
 
-    va_start(args1, format);
-    va_copy(args2, args1);
+    // va_list型の変数を宣言
+    va_list list;
 
-    // 最初の引数リストを使用します
-    vprintf(format, args1);
-    va_end(args1);
+    // 可変長引数の取得を開始
+    va_start(list, count);
 
-    printf("\n");
+    // 可変長引数を1個ずつ取得し、合計を求める
+    int total = 0;
+    for (int i=0; i<count; i++) 
+        total+=va_arg(list, int);
 
-    // コピーした引数リストを再度使用します
-    vprintf(format, args2);
-    va_end(args2);
+    // 可変長変数の取得を終了
+    va_end(list);
+
+    //　合計を返す
+    return total;
 }
 
-int main(void)
-{
-    print_two("Int: %d, Double: %.2f, Char: %c", 5, 2.3, 'A');
-
+int main(void){
+    printf("%d\n", sum(2, 123, 456));
+    printf("%d\n", sum(3, 123, 456, 789));
     return 0;
 }
