@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 12:48:53 by yuendo            #+#    #+#             */
-/*   Updated: 2023/06/13 00:00:12 by yutoendo         ###   ########.fr       */
+/*   Created: 2023/05/21 17:28:45 by yuendo            #+#    #+#             */
+/*   Updated: 2023/05/21 17:54:38 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#include "libft.h"
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include "libft/libft.h"
+char	*ft_strdup(const char *s1)
+{
+	const char	*p;
 
-int ft_printf(const char *, ...);
-#endif
+	p = malloc(ft_strlen(s1) + 1);
+	if (p == NULL)
+		return (NULL);
+	ft_strlcpy((char *)p, (char *)s1, ft_strlen(s1) + 1);
+	return ((char *)p);
+}

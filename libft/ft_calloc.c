@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 12:48:53 by yuendo            #+#    #+#             */
-/*   Updated: 2023/06/13 00:00:12 by yutoendo         ###   ########.fr       */
+/*   Created: 2023/05/21 15:24:35 by yuendo            #+#    #+#             */
+/*   Updated: 2023/05/25 11:32:11 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#include "libft.h"
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include "libft/libft.h"
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*p;
 
-int ft_printf(const char *, ...);
-#endif
+	if (size && count > SIZE_MAX / size)
+		return (NULL);
+	p = (void *)malloc(count * size);
+	if (!p)
+		return (NULL);
+	ft_bzero(p, count * size);
+	return (p);
+}

@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 12:48:53 by yuendo            #+#    #+#             */
-/*   Updated: 2023/06/13 00:00:12 by yutoendo         ###   ########.fr       */
+/*   Created: 2023/05/25 19:31:01 by yuendo            #+#    #+#             */
+/*   Updated: 2023/05/25 19:36:04 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#include "libft.h"
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdarg.h>
-#include "libft/libft.h"
-
-int ft_printf(const char *, ...);
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

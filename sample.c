@@ -22,7 +22,6 @@ int sum(int count, ...){
 }
 
 int main(void){
-    printf("%d\n", sum(2, 123, 456));
-    printf("%d\n", sum(3, 123, 456, 789));
+    printf();
     return 0;
 }
