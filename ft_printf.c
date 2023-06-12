@@ -6,7 +6,7 @@
 /*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:45:43 by yuendo            #+#    #+#             */
-/*   Updated: 2023/06/13 00:20:44 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/13 00:21:50 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int ft_printf(const char *str, ...){
     va_start(args, str);
     while(*str){
         write(1, str++, 1);
+        
     }
     str = va_arg(args, char*);
     while(*str)
