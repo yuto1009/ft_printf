@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int main(void){
-    printf("%%%% %% %   % ");
+    int num = 123;
+    printf("%d % %", num);
     return 0;
 }
