@@ -6,7 +6,7 @@
 /*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:58:04 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/17 20:11:56 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/17 23:12:12 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,16 @@ static int print_format_specifier(char format, va_list args){
 
 int is_valid_args(const char *str, va_list args){
     int is_format_specifier;
+    int occurrence_of_format_specifier;
 
     is_format_specifier = 0;
+    occurrence_of_format_specifier = 0;
     while(str && *str){
         if(*str == '%' && (str+1) && *(str + 1)){
             is_format_specifier =  print_format_specifier(*(str+1), args);
             if(!is_format_specifier)
                 return 0;   // This is when something went wrong like malloc failure
+            occurrence_of_format_specifier++;
         }
         else if(*str == '%'){
             write(1, "incomplete format specifier\n", 29);
@@ -62,5 +65,5 @@ int is_valid_args(const char *str, va_list args){
             str++;
         is_format_specifier = 0;
     }
-    return 1;
+    return occurrence_of_format_specifier;
 }
