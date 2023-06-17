@@ -13,6 +13,5 @@ int main(void){
     // printf("%u", -4294967295);
     printf("%x\n", num5);
     printf("%X\n", num5);
-
     return 0;
 }
