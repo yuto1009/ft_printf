@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:45:43 by yuendo            #+#    #+#             */
-/*   Updated: 2023/06/17 23:19:27 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/18 19:02:40 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,13 @@ char	*ft_itoa(int num)
 
 // // Function above are from libft and should be deleted before handing in
 
-void put_hex_pointer(void *p){
+int put_hex_pointer(void *p){
     const char *hex = "0123456789abcdef";
     unsigned long long address = (unsigned long long)p;
     char str[19];
     size_t i;
     size_t start;
+    int str_length;
 
     str[0] = '0';
     str[1] = 'x';
@@ -111,6 +112,8 @@ void put_hex_pointer(void *p){
         start++;
     write(1, str, 2);
     write(1, str+start, 19-start);
+    str_length = 21 - (int)start;
+    return (str_length);
 }
 
 char	*uitoa(unsigned int num)
@@ -137,12 +140,15 @@ char	*uitoa(unsigned int num)
 	return (s);
 }
 
-void put_lower_hex(unsigned int n){
+int put_lower_hex(unsigned int n){
     int num;
-    if(n == 0) 
-        return;
+    int length;
 
-    put_lower_hex(n / 16);
+    length = 0;
+    if(n == 0) 
+        return length;
+
+    length = put_lower_hex(n / 16);
 
     num = n % 16;
     
@@ -152,14 +158,18 @@ void put_lower_hex(unsigned int n){
         num += 'a' - 10;
 
     ft_putchar_fd(num, 1);
+    return length + 1;
 }
 
-void put_upper_hex(unsigned int n){
+int put_upper_hex(unsigned int n){
     int num;
-    if(n == 0) 
-        return;
+    int length;
 
-    put_upper_hex(n / 16);
+    length = 0;
+    if(n == 0) 
+        return length;
+
+    length = put_upper_hex(n / 16);
 
     num = n % 16;
     
@@ -169,6 +179,7 @@ void put_upper_hex(unsigned int n){
         num += 'A' - 10;
 
     ft_putchar_fd(num, 1);
+    return length + 1;
 }
 
 int print_char(va_list args){
@@ -184,116 +195,164 @@ int print_str(va_list args){
 
     s = va_arg(args, char*);
     ft_putstr_fd(s, 1);
-    return 1;
+    return ft_strlen(s);
 }
 
 int print_pointer(va_list args){
     void *p;
+    int str_length;
 
     p = va_arg(args, void*);
-    put_hex_pointer(p);
-    return 1;
+    str_length = put_hex_pointer(p);
+    return str_length;
 }
 
 int print_integer(va_list args){
     int num;
     char *s;
+    int str_length;
 
     num = va_arg(args, int);
     s = ft_itoa(num);
     if(!s)
         return 0;
     ft_putstr_fd(s, 1);
+    str_length = ft_strlen(s);
     free(s);
-    return 1;
+    return str_length;
 }
 
 int print_unsigned_int(va_list args){
     unsigned int num;
     char *s;
+    int str_length;
 
     num = va_arg(args, unsigned int);
     s = uitoa(num);
     if(!s)
         return 0;
     ft_putstr_fd(s, 1);
-    return 1;
+    str_length = ft_strlen(s);
+    free(s);
+    return str_length;
 }
 
 int print_lower_hex(va_list args) {
     unsigned int num;
+    int str_length;
     
     num = va_arg(args, unsigned int);
-    put_lower_hex(num);
+    str_length = put_lower_hex(num);
     return 1;
 }
 
 int print_upper_hex(va_list args){
     unsigned int num;
+    int str_length;
+
     num = va_arg(args, unsigned int);
-    put_upper_hex(num);
+    str_length = put_upper_hex(num);
     return 1;
 }
 
-int print_format_specifier(char format, va_list args){
-    int is_format_specifier;
+size_t count_va_list(va_list args){
+    size_t i;
+    int p;
 
-    is_format_specifier = 0;
+    i = 0;
+    while(1){
+        p = va_arg(args, int);
+        printf("%d\n", p);  //
+        if(!p)
+            break;
+        i++;
+    }
+    va_end(args);
+    printf("count is %zu\n", i);    //
+    return i;
+}
+
+size_t count_format_specifiers(char *format){
+    size_t i;
+    size_t count_format_specifiers;
+
+    i = 0;
+    count_format_specifiers = 0;
+    while(&format[i] && format[i]){
+        if(format[i] == '%'){
+            count_format_specifiers++;
+            if(&format[i+1] && format[i] == '%')
+                count_format_specifiers--;
+        }
+        i++;
+    }
+    return i;
+}
+
+int print_format_specifier(char format, va_list args){
+    int str_length;
+
+    str_length = 0;
     if(format == 'c')
-        is_format_specifier = print_char(args);
+        str_length = print_char(args);
     else if(format == 's')
-        is_format_specifier =  print_str(args);
+        str_length =  print_str(args);
     else if(format == 'p')
-        is_format_specifier = print_pointer(args);
+        str_length = print_pointer(args);
     else if(format == 'd' || format == 'i')
-        is_format_specifier = print_integer(args);
+        str_length = print_integer(args);
     else if(format == 'u')
-        is_format_specifier = print_unsigned_int(args);
+        str_length = print_unsigned_int(args);
     else if(format == 'x')
-        is_format_specifier = print_lower_hex(args);
+        str_length = print_lower_hex(args);
     else if(format == 'X')
-        is_format_specifier = print_upper_hex(args);
+        str_length = print_upper_hex(args);
     else if(format == '%'){
         ft_putchar_fd('%', 1);
-        is_format_specifier++;
+        str_length++;
     }
     else{
         write(1, "unhandled or incomplete format specifier\n", 41);
     }
-    return is_format_specifier;
+    return str_length;
 }
 
 int is_valid_args(const char *str, va_list args){
     int is_format_specifier;
-    int occurrence_of_format_specifier;
+    int str_length;
 
     is_format_specifier = 0;
-    occurrence_of_format_specifier = 0;
+    str_length = 0;
     while(str && *str){
         if(*str == '%' && (str+1) && *(str + 1)){
-            is_format_specifier =  print_format_specifier(*(str+1), args);
-            if(!is_format_specifier)
+            is_format_specifier = print_format_specifier(*(str+1), args);
+            if(!is_format_specifier){
+                write(1, "Write something MALLOC FAILED", 12);
                 return 0;   // This is when something went wrong like malloc failure
-            occurrence_of_format_specifier++;
+            }
+            str_length += is_format_specifier;
         }
         else if(*str == '%'){
             write(1, "incomplete format specifier\n", 29);
             return 0;
         }
-        else
+        else{
             ft_putchar_fd(*str, 1);
+            str_length++;
+        }
         if(is_format_specifier)
             str++;
         if(*str != '\0')
             str++;
         is_format_specifier = 0;
     }
-    return occurrence_of_format_specifier;
+    return str_length;
 }
 
 int ft_printf(const char *str, ...){
     va_list args;
-    int length_of_format_specifier;
+    va_list args_copy;
+    int str_length;
     
     char *str_copy = (char *)str;
     if(!str){
@@ -301,24 +360,24 @@ int ft_printf(const char *str, ...){
         return 1;
     }
     va_start(args, str);
-    length_of_format_specifier = is_valid_args(str_copy, args);
+    va_copy(args_copy, args);
+    // if(count_va_list(args_copy) != count_format_specifiers(str_copy)){
+    //     return 0;
+    // }
+    str_length = is_valid_args(str_copy, args);
     va_end(args);
-    if(!length_of_format_specifier)
+    if(!str_length)
         return 0;
-    return (ft_strlen(str) - length_of_format_specifier);
+    return (str_length);
 }
 
 #include <stdio.h>
 
 int main(void){
     int a;
-    int b;
-
-    a = ft_printf("%s", "Hello"); 
-    printf("%d", a); 
-    
-    b = printf("%s", "Hello");
-    printf("%d\n", b); 
-
+    a = 0;
+    ft_printf("%d\n", a);
+    // a = ft_printf("%d %d\n");
+    // ft_printf("%d\n", a);
     return 0;
 }
