@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:45:43 by yuendo            #+#    #+#             */
-/*   Updated: 2023/06/18 19:02:40 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/06/19 18:48:11 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,13 +187,17 @@ int print_char(va_list args){
 
     c = va_arg(args, int);
     ft_putchar_fd(c, 1);
-    return 1;
+    return ft_strlen(&c);
 }
 
 int print_str(va_list args){
     char *s;
 
     s = va_arg(args, char*);
+    if(!s){
+        write(1, "(null)", 6);
+        return 6;
+    }
     ft_putstr_fd(s, 1);
     return ft_strlen(s);
 }
@@ -215,7 +219,7 @@ int print_integer(va_list args){
     num = va_arg(args, int);
     s = ft_itoa(num);
     if(!s)
-        return 0;
+        return -1;
     ft_putstr_fd(s, 1);
     str_length = ft_strlen(s);
     free(s);
@@ -230,7 +234,7 @@ int print_unsigned_int(va_list args){
     num = va_arg(args, unsigned int);
     s = uitoa(num);
     if(!s)
-        return 0;
+        return -1;
     ft_putstr_fd(s, 1);
     str_length = ft_strlen(s);
     free(s);
@@ -255,39 +259,37 @@ int print_upper_hex(va_list args){
     return 1;
 }
 
-size_t count_va_list(va_list args){
-    size_t i;
-    int p;
+// size_t count_va_list(va_list args){
+//     size_t i;
+//     int p;
 
-    i = 0;
-    while(1){
-        p = va_arg(args, int);
-        printf("%d\n", p);  //
-        if(!p)
-            break;
-        i++;
-    }
-    va_end(args);
-    printf("count is %zu\n", i);    //
-    return i;
-}
+//     i = 0;
+//     while(1){
+//         p = va_arg(args, int);
+//         if(!p)
+//             break;
+//         i++;
+//     }
+//     va_end(args);
+//     return i;
+// }
 
-size_t count_format_specifiers(char *format){
-    size_t i;
-    size_t count_format_specifiers;
+// size_t count_format_specifiers(char *format){
+//     size_t i;
+//     size_t count_format_specifiers;
 
-    i = 0;
-    count_format_specifiers = 0;
-    while(&format[i] && format[i]){
-        if(format[i] == '%'){
-            count_format_specifiers++;
-            if(&format[i+1] && format[i] == '%')
-                count_format_specifiers--;
-        }
-        i++;
-    }
-    return i;
-}
+//     i = 0;
+//     count_format_specifiers = 0;
+//     while(&format[i] && format[i]){
+//         if(format[i] == '%'){
+//             count_format_specifiers++;
+//             if(&format[i+1] && format[i] == '%')
+//                 count_format_specifiers--;
+//         }
+//         i++;
+//     }
+//     return i;
+// }
 
 int print_format_specifier(char format, va_list args){
     int str_length;
@@ -313,6 +315,7 @@ int print_format_specifier(char format, va_list args){
     }
     else{
         write(1, "unhandled or incomplete format specifier\n", 41);
+        str_length = -1;
     }
     return str_length;
 }
@@ -326,14 +329,14 @@ int is_valid_args(const char *str, va_list args){
     while(str && *str){
         if(*str == '%' && (str+1) && *(str + 1)){
             is_format_specifier = print_format_specifier(*(str+1), args);
-            if(!is_format_specifier){
-                write(1, "Write something MALLOC FAILED", 12);
+            if(is_format_specifier == -1){
+                write(1, "maybe malloc failure\n", 6);
                 return 0;   // This is when something went wrong like malloc failure
             }
             str_length += is_format_specifier;
         }
         else if(*str == '%'){
-            write(1, "incomplete format specifier\n", 29);
+            write(1, "incomplete format specifier\n", 29);  //これ意味なくね？
             return 0;
         }
         else{
@@ -372,12 +375,40 @@ int ft_printf(const char *str, ...){
 }
 
 #include <stdio.h>
+#include <limits.h>
+
+__attribute__((destructor))
+static void destructor() {
+    system("leaks -q a.out");
+}
 
 int main(void){
-    int a;
-    a = 0;
-    ft_printf("%d\n", a);
-    // a = ft_printf("%d %d\n");
-    // ft_printf("%d\n", a);
+    // size_t count = 100;
+    // int a = INT_MAX;
+    // unsigned int b = INT_MIN;
+    // int c = -9999;
+    // char d = 50;
+    // char *s = NULL;
+    // char *s2 = "Hello_World!";
+    // int my_length, original_length;
+
+    // while(count--){
+    //     my_length = ft_printf("\\%%%dd%i %x%X%u %c %s%s%p%p\n", a, b, c, c, c, d, s, s2, s2, s2-count);
+    //     original_length = printf("\\%%%dd%i %x%X%u %c %s%s%p%p\n\n", a, b, c, c, c, d, s, s2, s2, s2-count);
+    //     ft_printf("my length is %d original length is %d\n", my_length, original_length);
+    //     a++;
+    //     b++;
+    //     c++;
+    //     d++;
+    // }
+    // printf("%zu\n", ft_strlen("\\%%-2147483626d-2147483625 ffffd908FFFFD9084294957320 I (null)Hello_World!0x1034b1f2f0x1034b1ee3"));
+
+    // int num = INT_MAX;
+    int b;
+    b = ft_printf("%%");
+    printf("a");
+    int c;
+    c = printf("%%");
+    ft_printf("mine is %d original is %d\n", b, c);
     return 0;
 }
