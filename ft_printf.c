@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:45:43 by yuendo            #+#    #+#             */
-/*   Updated: 2023/06/19 18:48:11 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/06/21 12:32:25 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,7 +187,7 @@ int print_char(va_list args){
 
     c = va_arg(args, int);
     ft_putchar_fd(c, 1);
-    return ft_strlen(&c);
+    return 1;
 }
 
 int print_str(va_list args){
@@ -247,7 +247,7 @@ int print_lower_hex(va_list args) {
     
     num = va_arg(args, unsigned int);
     str_length = put_lower_hex(num);
-    return 1;
+    return str_length;
 }
 
 int print_upper_hex(va_list args){
@@ -256,7 +256,7 @@ int print_upper_hex(va_list args){
 
     num = va_arg(args, unsigned int);
     str_length = put_upper_hex(num);
-    return 1;
+    return str_length;
 }
 
 // size_t count_va_list(va_list args){
@@ -377,38 +377,39 @@ int ft_printf(const char *str, ...){
 #include <stdio.h>
 #include <limits.h>
 
-__attribute__((destructor))
-static void destructor() {
-    system("leaks -q a.out");
-}
+// __attribute__((destructor))
+// static void destructor() {
+//     system("leaks -q a.out");
+// }
 
 int main(void){
-    // size_t count = 100;
-    // int a = INT_MAX;
-    // unsigned int b = INT_MIN;
-    // int c = -9999;
-    // char d = 50;
-    // char *s = NULL;
-    // char *s2 = "Hello_World!";
-    // int my_length, original_length;
+    size_t count = 100;
+    int a = INT_MAX;
+    unsigned int b = INT_MIN;
+    int c = -9999;
+    char d = 50;
+    char *s = NULL;
+    char *s2 = "Hello_World!";
+    int my_length, original_length;
 
-    // while(count--){
-    //     my_length = ft_printf("\\%%%dd%i %x%X%u %c %s%s%p%p\n", a, b, c, c, c, d, s, s2, s2, s2-count);
-    //     original_length = printf("\\%%%dd%i %x%X%u %c %s%s%p%p\n\n", a, b, c, c, c, d, s, s2, s2, s2-count);
-    //     ft_printf("my length is %d original length is %d\n", my_length, original_length);
-    //     a++;
-    //     b++;
-    //     c++;
-    //     d++;
-    // }
-    // printf("%zu\n", ft_strlen("\\%%-2147483626d-2147483625 ffffd908FFFFD9084294957320 I (null)Hello_World!0x1034b1f2f0x1034b1ee3"));
+    while(count--){
+        my_length = ft_printf("\\%%%dd%i %x%X%u %c %s%s%p%p\n", a, b, c, c, c, d, s, s2, s2, s2-count);
+        original_length = printf("\\%%%dd%i %x%X%u %c %s%s%p%p\n", a, b, c, c, c, d, s, s2, s2, s2-count);
+        ft_printf("my length is %d original length is %d\n", my_length, original_length);
+        a++;
+        b++;
+        c++;
+        d++;
+    }
 
-    // int num = INT_MAX;
-    int b;
-    b = ft_printf("%%");
-    printf("a");
-    int c;
-    c = printf("%%");
-    ft_printf("mine is %d original is %d\n", b, c);
+    // int mine = ft_printf("\\%%%dd%i %x%X%u %c", a, b, c, c, c, d);
+    // ft_printf("--vs--");
+    // int original = printf("\\%%%dd%i %x%X%u %c", a, b, c, c, c, d);
+
+    // int mine = ft_printf("%c", d);
+    // ft_printf("--vs--");
+    // int original = printf("%c", d);
+    // ft_printf("mine is %d, original is %d\n", mine, original);
+    // puts("");
     return 0;
 }
