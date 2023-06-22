@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:03:59 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/21 20:04:34 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:18:35 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+// static int	put_hex_pointer_utils(char *str)
+// {
+// 	size_t	start;
+// 	int		str_length;
+
+// 	start = 2;
+// 	while (str[start] == '0' && start < 18)
+// 		start++;
+// 	write(1, str, 2);
+// 	write(1, str + start, 19 - start);
+// 	str_length = 21 - (int)start;
+// 	return (str_length);
+// }
 
 static int	put_hex_pointer(void *p)
 {
@@ -18,9 +32,9 @@ static int	put_hex_pointer(void *p)
 	unsigned long long	address;
 	char				str[19];
 	size_t				i;
+
 	size_t				start;
 	int					str_length;
-
 	hex = "0123456789abcdef";
 	address = (unsigned long long)p;
 	str[0] = '0';
@@ -38,7 +52,8 @@ static int	put_hex_pointer(void *p)
 	write(1, str, 2);
 	write(1, str + start, 19 - start);
 	str_length = 21 - (int)start;
-	return (str_length);
+	// return (put_hex_pointer_utils(str));
+	return str_length;
 }
 
 int	print_pointer(va_list args)

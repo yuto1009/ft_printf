@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:45:43 by yuendo            #+#    #+#             */
-/*   Updated: 2023/06/21 19:52:53 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:58:22 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -372,5 +372,8 @@ int	ft_printf(const char *str, ...)
 // original_length);
 //         a++;b++;c++;d++;e++;
 //     }
+
+// 	ft_printf("%s", "\0");
+// 	printf("%s", "\0");
 //     return (0);
 // }
