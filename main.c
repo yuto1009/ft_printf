@@ -25,9 +25,14 @@ int main(void){
         a++;b++;c++;d++;e++;
     }
     int num = 0;
-	ft_printf("mine is %x\n", num);
-	printf("original is %x\n", num);
+    int my_len, ori_len;
+
+	my_len = ft_printf("%x\n", num);
+	ori_len =  printf("%x\n", num);
     ft_printf("mine is %X\n", num);
 	printf("original is %X\n", num);
+
+    ft_printf("%d %d\n", my_len, ori_len);
+
     return (0);
 }
