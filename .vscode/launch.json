@@ -8,10 +8,10 @@
             "type": "lldb-vscode",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceRoot}/<your program>",
+            "program": "$ft_printf/main.c",
             "args": [],
             "env": [],
-            "cwd": "${workspaceRoot}"
+            "cwd": "$ft_printf"
         }
     ]
 }
