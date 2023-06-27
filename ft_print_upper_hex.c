@@ -14,23 +14,25 @@
 
 static int	put_upper_hex(unsigned int n, int str_length)
 {
-	int num;
+	int	num;
 
-    num = n % 16;
-    n = n / 16;
-
-    if (n > 0){
-        str_length = put_upper_hex(n, str_length);
-    }
-	if (num < 10){
+	num = n % 16;
+	n = n / 16;
+	if (n > 0)
+	{
+		str_length = put_upper_hex(n, str_length);
+	}
+	if (num < 10)
+	{
 		ft_putchar_fd(num + '0', 1);
-        str_length++;
+		str_length++;
 	}
-	else{
+	else
+	{
 		ft_putchar_fd('A' + num - 10, 1);
-        str_length++;
+		str_length++;
 	}
-    return str_length;
+	return (str_length);
 }
 
 int	print_upper_hex(va_list args)

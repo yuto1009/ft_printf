@@ -6,7 +6,7 @@
 /*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:58:04 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/26 14:18:53 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/26 20:27:57 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,41 @@ static int	print_format_specifier(char format, va_list args)
 	return (str_length);
 }
 
+static char	*args_increment(int is_format_specifier, char *str)
+{
+	if (is_format_specifier > 0 || is_format_specifier == -2)
+		str++;
+	if (*str != '\0')
+		str++;
+	return (str);
+}
+
+static int	is_valid_args_utils(char *str, va_list args,
+		int is_format_specifier, int str_length)
+{
+	while (str && *str)
+	{
+		if (*str == '%' && (str + 1) && *(str + 1))
+		{
+			is_format_specifier = print_format_specifier(*(str + 1), args);
+			if (is_format_specifier == -1)
+				return (str_length);
+			if (is_format_specifier != -2)
+				str_length += is_format_specifier;
+		}
+		else if (*str == '%')
+			return (str_length + 29);
+		else
+		{
+			ft_putchar_fd(*str, 1);
+			str_length++;
+		}
+		str = args_increment(is_format_specifier, str);
+		is_format_specifier = 0;
+	}
+	return (str_length);
+}
+
 int	is_valid_args(char *str, va_list args)
 {
 	int	is_format_specifier;
@@ -48,34 +83,7 @@ int	is_valid_args(char *str, va_list args)
 
 	is_format_specifier = 0;
 	str_length = 0;
-	while (str && *str)
-	{
-		if (*str == '%' && (str + 1) && *(str + 1))
-		{
-			is_format_specifier = print_format_specifier(*(str + 1), args);
-			if (is_format_specifier == -1)
-			{
-				write(1, "malloc failure or incomplete format specifier\n", 46);
-				return (str_length + 46);
-			}
-			if (is_format_specifier != -2)
-				str_length += is_format_specifier;
-		}
-		else if (*str == '%')
-		{
-			write(1, "incomplete format specifier\n", 29);
-			return (str_length + 29);
-		}
-		else
-		{
-			ft_putchar_fd(*str, 1);
-			str_length++;
-		}
-		if (is_format_specifier > 0 || is_format_specifier == -2)
-			str++;
-		if (*str != '\0')
-			str++;
-		is_format_specifier = 0;
-	}
+	str_length = is_valid_args_utils(str, args, is_format_specifier,
+			str_length);
 	return (str_length);
 }
