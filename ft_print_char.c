@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:02:05 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/21 19:58:13 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:58:53 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	print_char(va_list args)
 {
-	char	c;
+	unsigned char	c;
 
 	c = va_arg(args, int);
 	if (c == 0)
 	{
-		return (-2);
+		return (NULL_EXCEPTION);
 	}
-	ft_putchar_fd(c, 1);
+	ft_putchar_fd(c, STDOUT_FILENO);
 	return (1);
 }

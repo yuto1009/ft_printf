@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_upper_hex.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:09:09 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/26 15:31:43 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:57:26 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static int	put_upper_hex(unsigned int n, int str_length)
 	}
 	if (num < 10)
 	{
-		ft_putchar_fd(num + '0', 1);
+		ft_putchar_fd(num + '0', STDOUT_FILENO);
 		str_length++;
 	}
 	else
 	{
-		ft_putchar_fd('A' + num - 10, 1);
+		ft_putchar_fd('A' + num - 10, STDOUT_FILENO);
 		str_length++;
 	}
 	return (str_length);

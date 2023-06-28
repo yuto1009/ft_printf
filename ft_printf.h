@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:48:53 by yuendo            #+#    #+#             */
-/*   Updated: 2023/06/21 20:11:42 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:58:57 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define MALLOC_FAILURE_OR_UNHANDLED_FORMAT_SPECIFIER -1
+# define NULL_EXCEPTION -2
 
 int	ft_printf(const char *format, ...);
 int	is_valid_args(char *str, va_list args);

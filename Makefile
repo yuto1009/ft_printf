@@ -1,11 +1,11 @@
 NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = $(wildcard ft_print*.c)
+SRCS = ft_printf.c ft_printf_utils.c ft_print_upper_hex.c ft_print_unsigned_int.c \
+ft_print_str.c ft_print_pointer.c ft_print_lower_hex.c ft_print_integer.c ft_print_char.c
 OBJS = $(SRCS:.c=.o)
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
-LIBFT_OBJS = $(addprefix $(LIBFT_PATH)/, $(notdir $(wildcard $(LIBFT_PATH)/*.o)))
 
 all: $(LIBFT) $(NAME)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_unsigned_int.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:06:01 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/26 13:54:21 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:10:28 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	print_unsigned_int(va_list args)
 	num = va_arg(args, unsigned int);
 	s = uitoa(num);
 	if (!s)
-		return (-1);
-	ft_putstr_fd(s, 1);
+		return (MALLOC_FAILURE_OR_UNHANDLED_FORMAT_SPECIFIER);
+	ft_putstr_fd(s, STDOUT_FILENO);
 	str_length = (int)ft_strlen(s);
 	free(s);
 	return (str_length);

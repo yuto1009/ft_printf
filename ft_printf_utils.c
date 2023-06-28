@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:58:04 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/26 20:27:57 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:12:15 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ static int	print_format_specifier(char format, va_list args)
 		str_length = print_upper_hex(args);
 	else if (format == '%')
 	{
-		ft_putchar_fd('%', 1);
+		ft_putchar_fd('%', STDOUT_FILENO);
 		str_length++;
 	}
 	else
-		str_length = -1;
+		str_length = MALLOC_FAILURE_OR_UNHANDLED_FORMAT_SPECIFIER;
 	return (str_length);
 }
 
 static char	*args_increment(int is_format_specifier, char *str)
 {
-	if (is_format_specifier > 0 || is_format_specifier == -2)
+	if (is_format_specifier > 0 || is_format_specifier == NULL_EXCEPTION)
 		str++;
 	if (*str != '\0')
 		str++;
@@ -58,16 +58,16 @@ static int	is_valid_args_utils(char *str, va_list args,
 		if (*str == '%' && (str + 1) && *(str + 1))
 		{
 			is_format_specifier = print_format_specifier(*(str + 1), args);
-			if (is_format_specifier == -1)
+			if (is_format_specifier == MALLOC_FAILURE_OR_UNHANDLED_FORMAT_SPECIFIER)
 				return (str_length);
-			if (is_format_specifier != -2)
+			if (is_format_specifier != NULL_EXCEPTION)
 				str_length += is_format_specifier;
 		}
 		else if (*str == '%')
-			return (str_length + 29);
+			return (str_length);
 		else
 		{
-			ft_putchar_fd(*str, 1);
+			ft_putchar_fd(*str, STDOUT_FILENO);
 			str_length++;
 		}
 		str = args_increment(is_format_specifier, str);

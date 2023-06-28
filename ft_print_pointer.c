@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:03:59 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/26 13:29:29 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:08:58 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static int	put_hex_pointer(void *p)
 	i = 2;
 	while (str[i] == '0' && i < 18)
 		i++;
-	write(1, str, 2);
-	write(1, str + i, 19 - i);
+	write(STDOUT_FILENO, str, 2);
+	write(STDOUT_FILENO, str + i, 19 - i);
 	str_length = 21 - i;
 	return (str_length);
 }
