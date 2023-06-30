@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:05:28 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/28 15:59:56 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/06/30 12:23:17 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	print_integer(va_list args)
 	num = va_arg(args, int);
 	s = ft_itoa(num);
 	if (!s)
-		return (MALLOC_FAILURE_OR_UNHANDLED_FORMAT_SPECIFIER);
+		return (MALLOC_FAILURE_OR_UNHANDLED_FORMAT);
 	ft_putstr_fd(s, STDOUT_FILENO);
 	str_length = (int)ft_strlen(s);
 	free(s);

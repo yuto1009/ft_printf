@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:06:01 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/28 16:10:28 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/06/30 12:22:58 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	print_unsigned_int(va_list args)
 	num = va_arg(args, unsigned int);
 	s = uitoa(num);
 	if (!s)
-		return (MALLOC_FAILURE_OR_UNHANDLED_FORMAT_SPECIFIER);
+		return (MALLOC_FAILURE_OR_UNHANDLED_FORMAT);
 	ft_putstr_fd(s, STDOUT_FILENO);
 	str_length = (int)ft_strlen(s);
 	free(s);

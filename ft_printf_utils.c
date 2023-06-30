@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:58:04 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/28 16:12:15 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/06/30 12:21:39 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	print_format_specifier(char format, va_list args)
 		str_length++;
 	}
 	else
-		str_length = MALLOC_FAILURE_OR_UNHANDLED_FORMAT_SPECIFIER;
+		str_length = MALLOC_FAILURE_OR_UNHANDLED_FORMAT;
 	return (str_length);
 }
 
@@ -58,7 +58,7 @@ static int	is_valid_args_utils(char *str, va_list args,
 		if (*str == '%' && (str + 1) && *(str + 1))
 		{
 			is_format_specifier = print_format_specifier(*(str + 1), args);
-			if (is_format_specifier == MALLOC_FAILURE_OR_UNHANDLED_FORMAT_SPECIFIER)
+			if (is_format_specifier == MALLOC_FAILURE_OR_UNHANDLED_FORMAT)
 				return (str_length);
 			if (is_format_specifier != NULL_EXCEPTION)
 				str_length += is_format_specifier;

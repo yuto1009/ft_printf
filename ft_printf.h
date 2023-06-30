@@ -6,7 +6,7 @@
 /*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:48:53 by yuendo            #+#    #+#             */
-/*   Updated: 2023/06/28 15:58:57 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/06/30 12:21:10 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define MALLOC_FAILURE_OR_UNHANDLED_FORMAT_SPECIFIER -1
+# define MALLOC_FAILURE_OR_UNHANDLED_FORMAT -1
 # define NULL_EXCEPTION -2
 
 int	ft_printf(const char *format, ...);

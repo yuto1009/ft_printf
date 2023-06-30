@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:45:43 by yuendo            #+#    #+#             */
-/*   Updated: 2023/06/26 20:08:00 by yutoendo         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:59:37 by yuendo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_printf(const char *str, ...)
 //     int a = INT_MAX;
 //     unsigned int b = INT_MIN;
 //     int c = -9999;
-//     char d = 30;
+//     char d = 20;
 //     char *s = NULL;
 //     char *s2 = "Hello_World!";
 //     int e = -10;
@@ -59,5 +59,14 @@ int	ft_printf(const char *str, ...)
 // original_length);
 //         a++;b++;c++;d++;e++;
 //     }
+
+// 	int i = -5;
+// 	while(i < 30){
+// 		int a = ft_printf("%c", i);
+// 		int b = printf("%c", i);
+// 		printf("\nascii: %d my--%d ori--%d\n", i , a, b);
+// 		i++;
+// 	}
+
 //     return (0);
 // }
