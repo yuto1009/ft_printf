@@ -21,4 +21,4 @@ If you have main.c in the repository, compile as following:
 gcc ft_printf/libftprintf.a main.c
 ```
 ## License
-[MIT]()
+[MIT](https://github.com/yuto1009/ft_printf/blob/master/LICENSE)
