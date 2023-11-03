@@ -9,7 +9,7 @@ Flags and options are not supported.
 - macOS
 - clang
   
-# Usage
+## Usage
 ```
 git clone ...
 cd ft_printf
