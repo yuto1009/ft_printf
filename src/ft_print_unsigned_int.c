@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_unsigned_int.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:06:01 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/30 12:22:58 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/11/03 23:12:40 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 static unsigned int	my_getdigit(long int n)
 {

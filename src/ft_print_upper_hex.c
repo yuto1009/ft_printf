@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_upper_hex.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:09:09 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/28 15:57:26 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/11/03 23:12:44 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 static int	put_upper_hex(unsigned int n, int str_length)
 {

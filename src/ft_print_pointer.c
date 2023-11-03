@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:03:59 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/28 16:08:58 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/11/03 23:12:27 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 static int	put_hex_pointer(void *p)
 {

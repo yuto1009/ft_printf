@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_lower_hex.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:07:08 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/28 16:01:27 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/11/03 23:12:24 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 static int	put_lower_hex(unsigned int n, int str_length)
 {

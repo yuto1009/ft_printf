@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_integer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuendo <yuendo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yutoendo <yutoendo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 20:05:28 by yutoendo          #+#    #+#             */
-/*   Updated: 2023/06/30 12:23:17 by yuendo           ###   ########.fr       */
+/*   Updated: 2023/11/03 23:12:21 by yutoendo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 int	print_integer(va_list args)
 {
