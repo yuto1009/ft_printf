@@ -16,7 +16,7 @@ cd ft_printf
 make
 ```
 Compile libftprintf.a with the main file you want to use.
-If you have main.c in the repository, compile as following:
+If you have main.c in the repository, compile as follow:
 ```
 gcc ft_printf/libftprintf.a main.c
 ```
