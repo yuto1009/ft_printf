@@ -1,6 +1,6 @@
 # ft_printf
 
-## Name
+## Overview
 C library printf function.
 Supported conversions are following: %, c, s, p, i, d, u, x, X.
 Flags and options are not supported.
